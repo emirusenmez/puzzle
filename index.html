@@ -15,6 +15,8 @@
             margin: 0;
             padding: 10px;
             touch-action: none;
+            overflow-x: hidden;
+            position: relative;
         }
         .container {
             display: flex;
@@ -42,6 +44,7 @@
             position: relative;
             box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
             overflow: hidden;
+            margin: 0 auto;
         }
         #guide-image {
             position: absolute;
@@ -85,6 +88,8 @@
             -webkit-touch-callout: none;
             -webkit-user-select: none;
             user-select: none;
+            will-change: transform;
+            backface-visibility: hidden;
         }
         .puzzle-piece.placed {
             cursor: default;
@@ -184,23 +189,31 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
             .container {
                 flex-direction: column;
+                margin-bottom: 20px;
             }
             #pieces-container {
                 width: min(800px, 90vw);
                 height: 150px;
                 grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+                margin-top: 10px;
             }
             #controls {
                 flex-direction: column;
                 align-items: stretch;
+                margin-bottom: 10px;
             }
             .difficulty-select {
                 margin: 0;
             }
             #image-selector {
                 gap: 10px;
+                margin-bottom: 10px;
             }
             .image-preview {
                 width: 80px;
@@ -210,7 +223,7 @@
     </style>
 </head>
 <body>
-    <h1>Resim Bulmaca Oyunu</h1>
+    <h1>BI Ekibi Resim Bulmaca Oyunu</h1>
     <div id="image-selector">
         <div class="image-option selected" onclick="selectImage('resim.jpg')">
             <img src="resim.jpg" alt="Resim 1" class="image-preview">
@@ -428,7 +441,7 @@
                 const correctX = parseInt(draggedPiece.dataset.correctX);
                 const correctY = parseInt(draggedPiece.dataset.correctY);
                 
-                if (Math.abs(boardX - correctX) < 50 && Math.abs(boardY - correctY) < 50) {
+                if (Math.abs(boardX - correctX) < 30 && Math.abs(boardY - correctY) < 30) {
                     draggedPiece.style.left = correctX + 'px';
                     draggedPiece.style.top = correctY + 'px';
                     draggedPiece.classList.add('placed');
@@ -479,7 +492,6 @@
             const boardRect = board.getBoundingClientRect();
             const pieceRect = draggedPiece.getBoundingClientRect();
 
-            // Check if piece is over the board
             const pieceCenter = {
                 x: pieceRect.left + pieceRect.width / 2,
                 y: pieceRect.top + pieceRect.height / 2
@@ -488,22 +500,17 @@
             if (pieceCenter.x >= boardRect.left && pieceCenter.x <= boardRect.right &&
                 pieceCenter.y >= boardRect.top && pieceCenter.y <= boardRect.bottom) {
                 
-                // Calculate position relative to board
                 const boardX = pieceCenter.x - boardRect.left - PIECE_WIDTH/2;
                 const boardY = pieceCenter.y - boardRect.top - PIECE_HEIGHT/2;
-
-                // Check if near correct position
                 const correctX = parseInt(draggedPiece.dataset.correctX);
                 const correctY = parseInt(draggedPiece.dataset.correctY);
                 
-                if (Math.abs(boardX - correctX) < 50 && Math.abs(boardY - correctY) < 50) {
-                    // Snap to correct position and lock
+                if (Math.abs(boardX - correctX) < 30 && Math.abs(boardY - correctY) < 30) {
                     draggedPiece.style.left = correctX + 'px';
                     draggedPiece.style.top = correctY + 'px';
                     draggedPiece.classList.add('placed');
                     placedPieces.add(draggedPiece);
                 } else {
-                    // Keep piece within board bounds
                     const x = Math.max(0, Math.min(boardX, BOARD_WIDTH - PIECE_WIDTH));
                     const y = Math.max(0, Math.min(boardY, BOARD_HEIGHT - PIECE_HEIGHT));
                     draggedPiece.style.left = x + 'px';
@@ -513,14 +520,11 @@
                 draggedPiece.style.transform = 'scale(1)';
                 board.appendChild(draggedPiece);
             } else {
-                // Return to pieces container if dropped outside board
                 returnToPiecesContainer(draggedPiece);
             }
 
             draggedPiece.style.zIndex = 1;
             draggedPiece = null;
-            
-            // Check if puzzle is complete
             checkWin();
         }
 
