@@ -160,10 +160,33 @@ rect {
     height: 100vh;
     margin: 0;
     padding: 10px;
-    overflow: auto; /* Mobilde scroll aktif */
+    overflow: scroll !important;
     -webkit-overflow-scrolling: touch;
     touch-action: pan-x pan-y;
     overscroll-behavior: contain;
+  }
+  
+  div.ex1::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    display: block !important;
+  }
+  
+  div.ex1::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+    display: block !important;
+  }
+  
+  div.ex1::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+    display: block !important;
+  }
+  
+  div.ex1::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    display: block !important;
   }
   
   .ex1-content {
