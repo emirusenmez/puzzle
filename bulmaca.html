@@ -28,7 +28,7 @@
             width: 100%;
             max-width: 500px;
             height: 300px;
-            overflow: auto;
+            overflow: scroll !important;
             direction: rtl;
             text-align: left;
             margin: 20px auto;
@@ -38,6 +38,8 @@
             -webkit-overflow-scrolling: touch;
             cursor: grab;
             user-select: none;
+            scrollbar-width: thick;
+            scrollbar-color: #666 #ddd;
         }
 
         div.ex1:active {
@@ -48,6 +50,8 @@
             white-space: nowrap;
             display: inline-block;
             min-width: 100%;
+            padding-bottom: 50px; /* Scroll çubuğu için extra padding */
+            padding-right: 50px;
         }
 
         .scroll-text {
@@ -67,9 +71,12 @@
 
         /* Custom scrollbar styles */
         div.ex1::-webkit-scrollbar {
-            width: 50px;
-            height: 50px;
-            touch-action: manipulation;
+            -webkit-appearance: none;
+            width: 50px !important;
+            height: 50px !important;
+            background-color: #ddd;
+            border: 3px solid #333;
+            border-radius: 25px;
         }
 
         div.ex1::-webkit-scrollbar-track {
@@ -97,6 +104,12 @@
             border-radius: 25px;
         }
 
+        /* Firefox için scroll style */
+        * {
+            scrollbar-width: auto;
+            scrollbar-color: #666 #ddd;
+        }
+
         h1, h2 {
             text-align: center;
             margin: 20px 0;
@@ -115,12 +128,38 @@
             div.ex1 {
                 height: 400px;
                 padding: 15px;
+                overflow: scroll !important;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            div.ex1::-webkit-scrollbar {
+                width: 30px !important;
+                height: 30px !important;
             }
 
             .scroll-text {
                 font-size: 20px;
                 padding: 15px 25px;
                 margin-right: 40px;
+            }
+
+            /* Mobil için extra scroll styles */
+            ::-webkit-scrollbar {
+                -webkit-appearance: none;
+                width: 30px !important;
+                height: 30px !important;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #666;
+                border: 3px solid #333;
+                border-radius: 15px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #ddd;
+                border: 3px solid #333;
+                border-radius: 15px;
             }
         }
     </style>
@@ -134,161 +173,17 @@
     <h2>overflow: scroll:</h2>
     <div class="ex1">
         <div class="scroll-content">
-            <span class="scroll-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit ➡️</span>
-            <span class="scroll-text">sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ➡️</span>
-            <span class="scroll-text">aliquam erat volutpat ut wisi enim ad minim veniam quis nostrud ➡️</span>
-            <span class="scroll-text">exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea ➡️</span>
-            <span class="scroll-text">commodo consequat duis autem vel eum iriure dolor in hendrerit ➡️</span>
-            <span class="scroll-text">in vulputate velit esse molestie consequat vel illum dolore eu ➡️</span>
-            <span class="scroll-text">feugiat nulla facilisis at vero eros et accumsan et iusto odio ➡️</span>
-            <span class="scroll-text">dignissim qui blandit praesent luptatum zzril delenit augue duis ➡️</span>
-            <span class="scroll-text">dolore te feugait nulla facilisi lorem ipsum dolor sit amet ➡️</span>
-            <span class="scroll-text">consectetuer adipiscing elit sed diam nonummy nibh euismod ➡️</span>
-            <span class="scroll-text">tincidunt ut laoreet dolore magna aliquam erat volutpat 🏁</span><br>
-            <span class="scroll-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit ➡️</span>
-            <span class="scroll-text">sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ➡️</span>
-            <span class="scroll-text">aliquam erat volutpat ut wisi enim ad minim veniam quis nostrud ➡️</span>
-            <span class="scroll-text">exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea ➡️</span>
-            <span class="scroll-text">commodo consequat duis autem vel eum iriure dolor in hendrerit ➡️</span>
-            <span class="scroll-text">in vulputate velit esse molestie consequat vel illum dolore eu ➡️</span>
-            <span class="scroll-text">feugiat nulla facilisis at vero eros et accumsan et iusto odio ➡️</span>
-            <span class="scroll-text">dignissim qui blandit praesent luptatum zzril delenit augue duis ➡️</span>
-            <span class="scroll-text">dolore te feugait nulla facilisi lorem ipsum dolor sit amet ➡️</span>
-            <span class="scroll-text">consectetuer adipiscing elit sed diam nonummy nibh euismod ➡️</span>
-            <span class="scroll-text">tincidunt ut laoreet dolore magna aliquam erat volutpat 🏁</span><br>
-            <span class="scroll-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit ➡️</span>
-            <span class="scroll-text">sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ➡️</span>
-            <span class="scroll-text">aliquam erat volutpat ut wisi enim ad minim veniam quis nostrud ➡️</span>
-            <span class="scroll-text">exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea ➡️</span>
-            <span class="scroll-text">commodo consequat duis autem vel eum iriure dolor in hendrerit ➡️</span>
-            <span class="scroll-text">in vulputate velit esse molestie consequat vel illum dolore eu ➡️</span>
-            <span class="scroll-text">feugiat nulla facilisis at vero eros et accumsan et iusto odio ➡️</span>
-            <span class="scroll-text">dignissim qui blandit praesent luptatum zzril delenit augue duis ➡️</span>
-            <span class="scroll-text">dolore te feugait nulla facilisi lorem ipsum dolor sit amet ➡️</span>
-            <span class="scroll-text">consectetuer adipiscing elit sed diam nonummy nibh euismod ➡️</span>
-            <span class="scroll-text">tincidunt ut laoreet dolore magna aliquam erat volutpat 🏁</span><br>
-            <span class="scroll-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit ➡️</span>
-            <span class="scroll-text">sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ➡️</span>
-            <span class="scroll-text">aliquam erat volutpat ut wisi enim ad minim veniam quis nostrud ➡️</span>
-            <span class="scroll-text">exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea ➡️</span>
-            <span class="scroll-text">commodo consequat duis autem vel eum iriure dolor in hendrerit ➡️</span>
-            <span class="scroll-text">in vulputate velit esse molestie consequat vel illum dolore eu ➡️</span>
-            <span class="scroll-text">feugiat nulla facilisis at vero eros et accumsan et iusto odio ➡️</span>
-            <span class="scroll-text">dignissim qui blandit praesent luptatum zzril delenit augue duis ➡️</span>
-            <span class="scroll-text">dolore te feugait nulla facilisi lorem ipsum dolor sit amet ➡️</span>
-            <span class="scroll-text">consectetuer adipiscing elit sed diam nonummy nibh euismod ➡️</span>
-            <span class="scroll-text">tincidunt ut laoreet dolore magna aliquam erat volutpat 🏁</span><br>
-            <span class="scroll-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit ➡️</span>
-            <span class="scroll-text">sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ➡️</span>
-            <span class="scroll-text">aliquam erat volutpat ut wisi enim ad minim veniam quis nostrud ➡️</span>
-            <span class="scroll-text">exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea ➡️</span>
-            <span class="scroll-text">commodo consequat duis autem vel eum iriure dolor in hendrerit ➡️</span>
-            <span class="scroll-text">in vulputate velit esse molestie consequat vel illum dolore eu ➡️</span>
-            <span class="scroll-text">feugiat nulla facilisis at vero eros et accumsan et iusto odio ➡️</span>
-            <span class="scroll-text">dignissim qui blandit praesent luptatum zzril delenit augue duis ➡️</span>
-            <span class="scroll-text">dolore te feugait nulla facilisi lorem ipsum dolor sit amet ➡️</span>
-            <span class="scroll-text">consectetuer adipiscing elit sed diam nonummy nibh euismod ➡️</span>
-            <span class="scroll-text">tincidunt ut laoreet dolore magna aliquam erat volutpat 🏁</span><br>
-            <span class="scroll-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit ➡️</span>
-            <span class="scroll-text">sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ➡️</span>
-            <span class="scroll-text">aliquam erat volutpat ut wisi enim ad minim veniam quis nostrud ➡️</span>
-            <span class="scroll-text">exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea ➡️</span>
-            <span class="scroll-text">commodo consequat duis autem vel eum iriure dolor in hendrerit ➡️</span>
-            <span class="scroll-text">in vulputate velit esse molestie consequat vel illum dolore eu ➡️</span>
-            <span class="scroll-text">feugiat nulla facilisis at vero eros et accumsan et iusto odio ➡️</span>
-            <span class="scroll-text">dignissim qui blandit praesent luptatum zzril delenit augue duis ➡️</span>
-            <span class="scroll-text">dolore te feugait nulla facilisi lorem ipsum dolor sit amet ➡️</span>
-            <span class="scroll-text">consectetuer adipiscing elit sed diam nonummy nibh euismod ➡️</span>
-            <span class="scroll-text">tincidunt ut laoreet dolore magna aliquam erat volutpat 🏁</span><br>
-            <span class="scroll-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit ➡️</span>
-            <span class="scroll-text">sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ➡️</span>
-            <span class="scroll-text">aliquam erat volutpat ut wisi enim ad minim veniam quis nostrud ➡️</span>
-            <span class="scroll-text">exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea ➡️</span>
-            <span class="scroll-text">commodo consequat duis autem vel eum iriure dolor in hendrerit ➡️</span>
-            <span class="scroll-text">in vulputate velit esse molestie consequat vel illum dolore eu ➡️</span>
-            <span class="scroll-text">feugiat nulla facilisis at vero eros et accumsan et iusto odio ➡️</span>
-            <span class="scroll-text">dignissim qui blandit praesent luptatum zzril delenit augue duis ➡️</span>
-            <span class="scroll-text">dolore te feugait nulla facilisi lorem ipsum dolor sit amet ➡️</span>
-            <span class="scroll-text">consectetuer adipiscing elit sed diam nonummy nibh euismod ➡️</span>
-            <span class="scroll-text">tincidunt ut laoreet dolore magna aliquam erat volutpat 🏁</span><br>
-            <span class="scroll-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit ➡️</span>
-            <span class="scroll-text">sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ➡️</span>
-            <span class="scroll-text">aliquam erat volutpat ut wisi enim ad minim veniam quis nostrud ➡️</span>
-            <span class="scroll-text">exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea ➡️</span>
-            <span class="scroll-text">commodo consequat duis autem vel eum iriure dolor in hendrerit ➡️</span>
-            <span class="scroll-text">in vulputate velit esse molestie consequat vel illum dolore eu ➡️</span>
-            <span class="scroll-text">feugiat nulla facilisis at vero eros et accumsan et iusto odio ➡️</span>
-            <span class="scroll-text">dignissim qui blandit praesent luptatum zzril delenit augue duis ➡️</span>
-            <span class="scroll-text">dolore te feugait nulla facilisi lorem ipsum dolor sit amet ➡️</span>
-            <span class="scroll-text">consectetuer adipiscing elit sed diam nonummy nibh euismod ➡️</span>
-            <span class="scroll-text">tincidunt ut laoreet dolore magna aliquam erat volutpat 🏁</span><br>
-            <span class="scroll-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit ➡️</span>
-            <span class="scroll-text">sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ➡️</span>
-            <span class="scroll-text">aliquam erat volutpat ut wisi enim ad minim veniam quis nostrud ➡️</span>
-            <span class="scroll-text">exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea ➡️</span>
-            <span class="scroll-text">commodo consequat duis autem vel eum iriure dolor in hendrerit ➡️</span>
-            <span class="scroll-text">in vulputate velit esse molestie consequat vel illum dolore eu ➡️</span>
-            <span class="scroll-text">feugiat nulla facilisis at vero eros et accumsan et iusto odio ➡️</span>
-            <span class="scroll-text">dignissim qui blandit praesent luptatum zzril delenit augue duis ➡️</span>
-            <span class="scroll-text">dolore te feugait nulla facilisi lorem ipsum dolor sit amet ➡️</span>
-            <span class="scroll-text">consectetuer adipiscing elit sed diam nonummy nibh euismod ➡️</span>
-            <span class="scroll-text">tincidunt ut laoreet dolore magna aliquam erat volutpat 🏁</span><br>
-            <span class="scroll-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit ➡️</span>
-            <span class="scroll-text">sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ➡️</span>
-            <span class="scroll-text">aliquam erat volutpat ut wisi enim ad minim veniam quis nostrud ➡️</span>
-            <span class="scroll-text">exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea ➡️</span>
-            <span class="scroll-text">commodo consequat duis autem vel eum iriure dolor in hendrerit ➡️</span>
-            <span class="scroll-text">in vulputate velit esse molestie consequat vel illum dolore eu ➡️</span>
-            <span class="scroll-text">feugiat nulla facilisis at vero eros et accumsan et iusto odio ➡️</span>
-            <span class="scroll-text">dignissim qui blandit praesent luptatum zzril delenit augue duis ➡️</span>
-            <span class="scroll-text">dolore te feugait nulla facilisi lorem ipsum dolor sit amet ➡️</span>
-            <span class="scroll-text">consectetuer adipiscing elit sed diam nonummy nibh euismod ➡️</span>
-            <span class="scroll-text">tincidunt ut laoreet dolore magna aliquam erat volutpat 🏁</span><br>
-            <span class="scroll-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit ➡️</span>
-            <span class="scroll-text">sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ➡️</span>
-            <span class="scroll-text">aliquam erat volutpat ut wisi enim ad minim veniam quis nostrud ➡️</span>
-            <span class="scroll-text">exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea ➡️</span>
-            <span class="scroll-text">commodo consequat duis autem vel eum iriure dolor in hendrerit ➡️</span>
-            <span class="scroll-text">in vulputate velit esse molestie consequat vel illum dolore eu ➡️</span>
-            <span class="scroll-text">feugiat nulla facilisis at vero eros et accumsan et iusto odio ➡️</span>
-            <span class="scroll-text">dignissim qui blandit praesent luptatum zzril delenit augue duis ➡️</span>
-            <span class="scroll-text">dolore te feugait nulla facilisi lorem ipsum dolor sit amet ➡️</span>
-            <span class="scroll-text">consectetuer adipiscing elit sed diam nonummy nibh euismod ➡️</span>
-            <span class="scroll-text">tincidunt ut laoreet dolore magna aliquam erat volutpat 🏁</span><br>
-            <span class="scroll-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit ➡️</span>
-            <span class="scroll-text">sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ➡️</span>
-            <span class="scroll-text">aliquam erat volutpat ut wisi enim ad minim veniam quis nostrud ➡️</span>
-            <span class="scroll-text">exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea ➡️</span>
-            <span class="scroll-text">commodo consequat duis autem vel eum iriure dolor in hendrerit ➡️</span>
-            <span class="scroll-text">in vulputate velit esse molestie consequat vel illum dolore eu ➡️</span>
-            <span class="scroll-text">feugiat nulla facilisis at vero eros et accumsan et iusto odio ➡️</span>
-            <span class="scroll-text">dignissim qui blandit praesent luptatum zzril delenit augue duis ➡️</span>
-            <span class="scroll-text">dolore te feugait nulla facilisi lorem ipsum dolor sit amet ➡️</span>
-            <span class="scroll-text">consectetuer adipiscing elit sed diam nonummy nibh euismod ➡️</span>
-            <span class="scroll-text">tincidunt ut laoreet dolore magna aliquam erat volutpat 🏁</span><br>
-            <span class="scroll-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit ➡️</span>
-            <span class="scroll-text">sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ➡️</span>
-            <span class="scroll-text">aliquam erat volutpat ut wisi enim ad minim veniam quis nostrud ➡️</span>
-            <span class="scroll-text">exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea ➡️</span>
-            <span class="scroll-text">commodo consequat duis autem vel eum iriure dolor in hendrerit ➡️</span>
-            <span class="scroll-text">in vulputate velit esse molestie consequat vel illum dolore eu ➡️</span>
-            <span class="scroll-text">feugiat nulla facilisis at vero eros et accumsan et iusto odio ➡️</span>
-            <span class="scroll-text">dignissim qui blandit praesent luptatum zzril delenit augue duis ➡️</span>
-            <span class="scroll-text">dolore te feugait nulla facilisi lorem ipsum dolor sit amet ➡️</span>
-            <span class="scroll-text">consectetuer adipiscing elit sed diam nonummy nibh euismod ➡️</span>
-            <span class="scroll-text">tincidunt ut laoreet dolore magna aliquam erat volutpat 🏁</span><br>
-            <span class="scroll-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit ➡️</span>
-            <span class="scroll-text">sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ➡️</span>
-            <span class="scroll-text">aliquam erat volutpat ut wisi enim ad minim veniam quis nostrud ➡️</span>
-            <span class="scroll-text">exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea ➡️</span>
-            <span class="scroll-text">commodo consequat duis autem vel eum iriure dolor in hendrerit ➡️</span>
-            <span class="scroll-text">in vulputate velit esse molestie consequat vel illum dolore eu ➡️</span>
-            <span class="scroll-text">feugiat nulla facilisis at vero eros et accumsan et iusto odio ➡️</span>
-            <span class="scroll-text">dignissim qui blandit praesent luptatum zzril delenit augue duis ➡️</span>
-            <span class="scroll-text">dolore te feugait nulla facilisi lorem ipsum dolor sit amet ➡️</span>
-            <span class="scroll-text">consectetuer adipiscing elit sed diam nonummy nibh euismod ➡️</span>
-            <span class="scroll-text">tincidunt ut laoreet dolore magna aliquam erat volutpat 🏁</span><br>
-            
+            <span class="scroll-text">🎯 tincidunt ut laoreet dolore magna</span>
+            <span class="scroll-text">🎯 tincidunt ut laoreet dolore magna</span>
+            <span class="scroll-text">🎯 tincidunt ut laoreet dolore magna</span>
+            <span class="scroll-text">🎯 tincidunt ut laoreet dolore magna</span>
+            <span class="scroll-text">🎯 tincidunt ut laoreet dolore magna</span>
+            <span class="scroll-text">🎯 tincidunt ut laoreet dolore magna</span>
+            <span class="scroll-text">🎯 tincidunt ut laoreet dolore magna</span>
+            <span class="scroll-text">🎯 tincidunt ut laoreet dolore magna</span>
+            <span class="scroll-text">🎯 tincidunt ut laoreet dolore magna</span>
+            <span class="scroll-text">🎯 tincidunt ut laoreet dolore magna</span>
+            <span class="scroll-text">🎯 tincidunt ut laoreet dolore magna</span>
         </div>
     </div>
 </div>
